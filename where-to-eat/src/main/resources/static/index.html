@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<!--
+	ZeroFour by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="en" ng-app="myApp">
+	<head>
+		<title>ZeroFour by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	</head>
+	<body class="homepage">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header-wrapper">
+					<div class="container">
+
+						<!-- Header -->
+							<header id="header">
+								<div class="inner">
+
+									<!-- Logo -->
+										<h1><a href="#">Where do we eat?</a></h1>
+
+									<!-- Nav -->
+										<nav id="nav">
+											<ul>
+												<li ng-if="globals.currentUser">
+													<a href="#">{{globals.currentUser.email}}</a>
+												</li>
+												<li ng-if="globals.currentUser"><a href="#/login">Logout</a></li>
+											</ul>
+										</nav>
+
+								</div>
+							</header>
+
+						<!-- Banner -->
+							<div id="banner" ng-if="globals.currentUser && isVotePage == false">
+								<h2>
+									<strong ng-if="todayLocation">Today we go to: {{todayLocation.name}}</strong>	
+									<strong ng-if="!todayLocation">Where do we go?</strong>									
+								</h2>
+								<a href="#/vote" class="btn btn-default btn-lg icon fa-check-circle">Vote</a>
+							</div>
+
+					</div>
+				</div>
+				<div id="main-wrapper">
+					<div class="wrapper style1">
+						<div class="inner">
+                			<div class="col-md-6 col-md-offset-3">
+                				<div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+                			</div>
+							<section class="container box feature1">
+									<div ng-view></div>
+							</section>
+							
+						</div>
+					</div>
+				</div>
+		</div>
+
+		<!-- Scripts -->
+
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/skel-viewport.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+		    <script src="bower_components/angular/angular.js"></script>
+		    <script src="bower_components/angular-touch/angular-touch.js"></script>
+		    <script src="bower_components/angular-resource/angular-resource.js"></script>
+		    <script src="bower_components/angular-animate/angular-animate.js"></script>
+		    <script src="bower_components/angular-route/angular-route.js"></script>
+		    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+		    <script src="bower_components/query-string/query-string.js"></script>
+		    <script src="bower_components/angular-oauth2/dist/angular-oauth2.js"></script>
+		    <script src="js/app.js"></script>
+		    <script src="js/controllers/login.controller.js"></script>
+		    <script src="js/controllers/register.controller.js"></script>
+		    <script src="js/controllers/home.controller.js"></script>
+		    <script src="js/controllers/vote.controller.js"></script>
+		    <script src="js/rest-services.js"></script>
+		    <script src="js/authentication.service.js"></script>
+		    <!-- Real user service that uses an api -->
+		    <script src="js/user.service.js"></script>
+		    <script src="js/location.service.js"></script>
+		    <script src="js/vote.service.js"></script>
+		    <script src="js/flash.service.js"></script>
+
+	</body>
+</html>

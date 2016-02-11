@@ -1,0 +1,21 @@
+<h1>Today we go to:{{todayLocation.name}}</h1>
+<button class="alert alert-info" ng-click="vm.toggleChart()">Toggle chart</button>
+<div ng-if="vm.showChart">      
+	<ul>
+	    <li ng-repeat="r in vm.results">
+	        <div class="progress">
+			  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{r.percent}}%;">
+			    {{vm.location(r.locationId).name}}
+			  </div>
+			</div>
+	    </li>
+	</ul>
+</div>
+<h4>Your option was:  <span class="label label-success">{{votedLocation.name}}</span></h4>
+<ul>
+    <li ng-repeat="location in vm.locations">
+        <h3><button class="alert alert-info" ng-click="vm.vote(location)">{{location.name}}</button></h3>
+    </li>
+</ul>
+<p>&nbsp;</p> 
+<p></p>
