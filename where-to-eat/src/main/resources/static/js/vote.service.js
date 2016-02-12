@@ -6,7 +6,7 @@
 
     VoteService.$inject = ['$http', 'urls'];
     function VoteService($http,urls) {
-		var API_USER_URL = urls.apiRoot + 'voting';
+		var API_USER_URL = urls.apiRoot + '/voting';
         return {
         	todayPoll : todayPoll,
         	vote : vote        	

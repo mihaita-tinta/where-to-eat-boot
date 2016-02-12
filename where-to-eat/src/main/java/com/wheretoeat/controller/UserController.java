@@ -11,7 +11,7 @@ import com.wheretoeat.domain.DomainUser;
 import com.wheretoeat.repository.DomainUserRepository;
 import com.wheretoeat.security.SecurityUser;
 
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 @RestController
 public class UserController {
 

@@ -9,7 +9,7 @@ angular.module('myApp', [
 	'angular-oauth2'
 ])
 .value('urls', {
-						apiRoot : 'http://localhost:8080/'
+						apiRoot : API_BASE_URL + '/api'
 })
 .config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
 	 $routeProvider
@@ -35,13 +35,12 @@ angular.module('myApp', [
             })
             .otherwise({ redirectTo: '/login' });
 		
-	//$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 	$httpProvider.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';	
 }])
 .config(['OAuthProvider', 'OAuthTokenProvider', function(OAuthProvider, OAuthTokenProvider) {
     OAuthProvider.configure({
       clientId: 'gui',
-      clientSecret: 'mihabc', // optional
+      clientSecret: 'mihabc',
 	  baseUrl: API_BASE_URL,
 	  grantPath: '/oauth/token',
 	  revokePath: '/oauth/revoke',

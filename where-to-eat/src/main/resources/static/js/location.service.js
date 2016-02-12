@@ -6,7 +6,7 @@
 
     LocationService.$inject = ['$http', 'urls'];
     function LocationService($http,urls) {
-		var API_USER_URL = urls.apiRoot + 'locations';
+		var API_USER_URL = urls.apiRoot + '/locations';
         return {
         	list : list,
         	save : save        	

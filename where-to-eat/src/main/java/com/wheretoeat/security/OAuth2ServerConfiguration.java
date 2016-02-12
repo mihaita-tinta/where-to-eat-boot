@@ -43,8 +43,7 @@ public class OAuth2ServerConfiguration {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
                 .authorizeRequests()
-                .antMatchers("/api/authenticate").permitAll()
-                .antMatchers("/api/register").permitAll()
+                .antMatchers("/register").permitAll()
                 .antMatchers("/api/**").authenticated();
 
         }

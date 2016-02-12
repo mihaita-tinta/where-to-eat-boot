@@ -23,7 +23,7 @@ import com.wheretoeat.repository.VoteRepository;
 import com.wheretoeat.security.SecurityUser;
 import com.wheretoeat.service.VotingService;
 
-@RequestMapping("/voting")
+@RequestMapping("/api/voting")
 @RestController
 public class VoteController {
 	private final VoteRepository voteRepository;

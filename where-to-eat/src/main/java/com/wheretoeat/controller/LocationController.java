@@ -19,7 +19,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@RequestMapping("/locations")
+@RequestMapping("/api/locations")
 @RestController
 public class LocationController {
 	private LocationRepository locationRepo;
