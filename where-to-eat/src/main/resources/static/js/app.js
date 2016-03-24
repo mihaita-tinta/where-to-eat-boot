@@ -9,6 +9,7 @@ angular.module('myApp', [
 	'angular-oauth2'
 ])
 .value('urls', {
+						baseUrl : API_BASE_URL,
 						apiRoot : API_BASE_URL + '/api'
 })
 .config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
@@ -55,7 +56,8 @@ angular.module('myApp', [
 		}
 	});
   }])
-.run(['$rootScope', '$window', 'OAuth', '$location', '$cookieStore', '$http', function($rootScope, $window, OAuth, $location, $cookieStore, $http) {
+.run(['$rootScope', '$window', 'OAuth', '$location', '$cookieStore', '$http', 'WebSocketService', '$timeout',
+      function($rootScope, $window, OAuth, $location, $cookieStore, $http, WebSocketService, $timeout) {
     $rootScope.$on('oauth:error', function(event, rejection) {
       // Ignore `invalid_grant` error - should be catched on `LoginController`.
       if ('invalid_grant' === rejection.data.error) {
@@ -87,5 +89,12 @@ angular.module('myApp', [
 		if (allowedPage == true && !loggedIn) {
 					$location.path('/login');
 		}
+
+	    // websocket
+	    if (loggedIn && current.indexOf('/login')<0 && next.indexOf('/logout')<0) {
+	    	WebSocketService.connectIfNotConnected();
+	    }
+	    	
     });
+    
   }]);

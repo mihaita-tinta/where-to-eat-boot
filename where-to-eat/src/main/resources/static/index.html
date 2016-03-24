@@ -55,14 +55,81 @@
 				</div>
 				<div id="main-wrapper">
 					<div class="wrapper style1">
-						<div class="inner">
                 			<div class="col-md-6 col-md-offset-3">
                 				<div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
                 			</div>
 							<section class="container box feature1">
 									<div ng-view></div>
 							</section>
+					</div>
+					<div ng-if="globals.currentUser">
+						<div class="col-md-2" style="padding-top:40px; position: fixed;bottom: 0;right: 0;">
+							   	<div style="float:right;">
+							          <div class="panel panel-primary">
+							            <div class="panel-heading">
+							               ONLINE USERS
+							            </div>
+							            <div class="panel-body">
+							                <ul class="media-list" style="max-height:200px;overflow: scroll;" >
+							                					<li>
+																	Username: {{username}}
+							                					</li>
+							                    				<li class="media"  data-ng-repeat="item in users" >
 							
+							                                        <div class="media-body">
+							
+							                                            <div class="media">
+							                                                <a class="pull-left" href="#">
+							                                                    <img class="media-object img-circle" style="max-height:40px;" src="assets/img/user.gif" />
+							                                                </a>
+							                                                <div class="media-body" >
+							                                                    <h5>{{ item.username}} | User </h5>
+							                                                    
+							                                                   <small class="text-muted">Last login: {{item.lastLogin}}</small>
+							                                                </div>
+							                                            </div>
+							
+							                                        </div>
+							                                    </li>
+							                                </ul>
+							                </div>
+							            </div>
+							        
+							    </div>
+						   		<div style="float:right;">
+						        	<div class="panel panel-info">
+							            <div class="panel-heading">
+							                Conversation
+							            </div>
+						            <div class="panel-body">
+										<ul id="chat-ul" class="media-list" data-ng-show="messages.length>0" style="max-height:200px;overflow: scroll;" >
+				     						<li class="media"  data-ng-repeat="item in messages" id="message-{{item.id}}">
+												<div class="media-body">
+			                                           <div class="media">
+			                                               <a class="pull-left" href="#">
+			                                                   <img class="media-object img-circle " src="assets/img/user.gif" />
+			                                               </a>
+			                                               <div class="media-body" >
+			                                                  {{ item.message}}
+			                                                   <br />
+			                                                  <small class="text-muted">{{ item.sender.username}} | {{ item.when}}</small>
+			                                                   <hr />
+			                                               </div>
+			                                           </div>
+				                                </div>
+				                           	</li>
+						                </ul>
+						            </div>
+						            <div class="panel-footer">
+						                <div class="input-group">
+						                                    <input type="text" class="form-control" placeholder="Enter Message" ng-model="$root.message"  />
+						                                    <span class="input-group-btn">
+						                                        <button class="btn btn-info" type="button" data-ng-click='sendMessage();'>SEND</button>
+						                                    </span>
+						                                </div>
+						            </div>
+						        </div>
+						    </div>
 						</div>
 					</div>
 				</div>
@@ -85,7 +152,11 @@
 		    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
 		    <script src="bower_components/query-string/query-string.js"></script>
 		    <script src="bower_components/angular-oauth2/dist/angular-oauth2.js"></script>
+			<!-- Websocket -->
+			<script type="text/javascript" src="libs/sockjs-0.3.4.js"></script>
+			<script type="text/javascript" src="libs/stomp.js"></script>
 		    <script src="js/app.js"></script>
+		    <script src="js/websocket.service.js"></script>
 		    <script src="js/controllers/login.controller.js"></script>
 		    <script src="js/controllers/register.controller.js"></script>
 		    <script src="js/controllers/home.controller.js"></script>

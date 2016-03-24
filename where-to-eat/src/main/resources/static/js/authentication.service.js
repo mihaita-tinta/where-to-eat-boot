@@ -5,8 +5,8 @@
         .module('myApp')
         .factory('AuthenticationService', AuthenticationService);
 	
-    AuthenticationService.$inject = ['$http', '$cookieStore', '$rootScope', '$timeout', 'UserService', 'OAuth', 'OAuthToken', 'urls'];
-    function AuthenticationService($http, $cookieStore, $rootScope, $timeout, UserService, OAuth, OAuthToken, urls) {
+    AuthenticationService.$inject = ['$http', '$cookieStore', '$rootScope', '$timeout', 'UserService', 'OAuth', 'OAuthToken', 'urls', 'WebSocketService'];
+    function AuthenticationService($http, $cookieStore, $rootScope, $timeout, UserService, OAuth, OAuthToken, urls, WebSocketService) {
         var service = {};
 
         service.Login = Login;
@@ -42,6 +42,7 @@
             };
 
             $cookieStore.put('globals', $rootScope.globals);
+			WebSocketService.connect();
         }
 
         function register(user) {
@@ -57,7 +58,9 @@
             $rootScope.globals = {};
             $cookieStore.remove('globals');
 			OAuthToken.removeToken();
-        }		
+			WebSocketService.disconnect();
+        }	
+        
     }
 
 })();
