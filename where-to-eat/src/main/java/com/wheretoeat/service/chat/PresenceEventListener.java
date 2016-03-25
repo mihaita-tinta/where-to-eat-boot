@@ -50,9 +50,8 @@ public class PresenceEventListener {
 
 		ChatUser user = userService.get(event.getSessionId());
 		if (user != null) {
-			userService.logout(event.getSessionId());
-			ChatUser euser = userService.get(event.getSessionId());
-			if (euser == null)
+			boolean isOffline = userService.logout(event.getSessionId());
+			if (isOffline)
 				messagingTemplate.convertAndSend(logoutDestination, user);
 		}
 	}

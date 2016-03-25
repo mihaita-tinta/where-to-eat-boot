@@ -1,5 +1,5 @@
 'use strict';
-var API_BASE_URL = 'http://localhost:8080';
+var API_BASE_URL = 'https://wtfte.herokuapp.com';
 
 angular.module('myApp', [
     'ngTouch',

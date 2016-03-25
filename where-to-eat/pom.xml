@@ -116,6 +116,21 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+	        <groupId>com.heroku.sdk</groupId>
+	        <artifactId>heroku-maven-plugin</artifactId>
+	        <version>0.5.7</version>
+	        <configuration>
+  			  <appName>wtfte</appName>
+	          <processTypes>
+		          <web>java $JAVA_OPTS -Dserver.port=$PORT -jar target/*.jar</web>
+		        </processTypes>
+		        <includeTarget>false</includeTarget>
+		        <includes>
+		        	<include>target/where-to-eat-0.0.1-SNAPSHOT.jar</include>
+		        </includes>
+	        </configuration>
+	      </plugin>
 			<!-- Rest Docs Start -->
 <!-- 			<plugin>  -->
 <!-- 	            <groupId>org.apache.maven.plugins</groupId> -->

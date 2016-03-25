@@ -109,7 +109,7 @@
 			                                               <a class="pull-left" href="#">
 			                                                   <img class="media-object img-circle " src="assets/img/user.gif" />
 			                                               </a>
-			                                               <div class="media-body" >
+			                                               <div class="media-body" ng-style="{color: item.isPrivate?'red':''}">
 			                                                  {{ item.message}}
 			                                                   <br />
 			                                                  <small class="text-muted">{{ item.sender.username}} | {{ item.when}}</small>
@@ -125,6 +125,15 @@
 						                                    <input type="text" class="form-control" placeholder="Enter Message" ng-model="$root.message"  />
 						                                    <span class="input-group-btn">
 						                                        <button class="btn btn-info" type="button" data-ng-click='sendMessage();'>SEND</button>
+						                                    </span>
+						                                </div>
+						            </div>
+						            <div class="panel-footer">
+						                <div class="input-group">
+						                                    <input type="text" class="form-control" placeholder="Enter username" ng-model="$root.privateUser"  />
+						                                    <input type="text" class="form-control" placeholder="Enter Private Message" ng-model="$root.privateMessage"  />
+						                                    <span class="input-group-btn">
+						                                        <button class="btn btn-info" type="button" data-ng-click='sendPrivateMessage();'>SEND</button>
 						                                    </span>
 						                                </div>
 						            </div>

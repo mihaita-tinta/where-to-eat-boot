@@ -27,12 +27,20 @@ public class ChatUserService {
 		onlineSessions.put(sessionId, user);
 	}
 	
-	public void logout(String sessionId) {
+	/**
+	 * 
+	 * @param sessionId
+	 * @return true if the user has no other active session
+	 */
+	public boolean logout(String sessionId) {
 		ChatUser user = onlineSessions.get(sessionId);
 		onlineSessions.remove(sessionId);
 		
-		if (!onlineSessions.containsValue(user))
+		if (!onlineSessions.containsValue(user)) {
 			onlineUsers.remove(user.getUsername());
+			return true;
+		}
+		return false;
 	}
 	
 }

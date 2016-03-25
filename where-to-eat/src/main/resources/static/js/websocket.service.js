@@ -33,7 +33,18 @@
 	    					    var TOPIC_MESSAGES_PATH 		= "/app/chat.messages";
 	    					    var TOPIC_MESSAGE_PATH 		= "/topic/chat.message";
 	    					    var SEND_MESSAGE_PATH 		= "/app/chat.message";
-	    					
+	    					    var TOPIC_PRIVATE_MESSAGE   = "/user/queue/private.message";
+	    					    var SEND_PRIVATE_MESSAGE_PATH = "/app/chat.message/";
+
+	    						methods.subscribe(TOPIC_PRIVATE_MESSAGE, function(message) {
+	    					        console.log("myCtrl - message from: " + TOPIC_PRIVATE_MESSAGE + "\n" + message.body);  
+	    					        var item = JSON.parse(message.body);
+	    					        item.isPrivate = true;
+	    					        $rootScope.messages.push(item);
+	    					        $rootScope.$apply();
+	    					        $rootScope.focusLastMessage();    
+	    						});
+	    						
 	    						methods.subscribe(TOPIC_CURRENT_USER, function(message) {
 	    					        console.log("myCtrl - message from: " + TOPIC_CURRENT_USER + "\n" + message.body);        
 	    					        $rootScope.username = message.body;
@@ -89,13 +100,13 @@
 	    					    };
 	    					
 	    					    $rootScope.sendPrivateMessage = function () {
-	    					    	var privateDestination = SEND_PRIVATE_MESSAGE_PATH + $scope.privateUser;
+	    					    	var privateDestination = SEND_PRIVATE_MESSAGE_PATH + $rootScope.privateUser;
 	    					        console.log("chatController - sendPrivateMesage to: " + privateDestination);
-	    					        var message 	= $scope.privateMessage;
+	    					        var message 	= $rootScope.privateMessage;
 	    					        $rootScope.privateMessage	= '';
 	    					        methods.send(privateDestination, {
 	    					        											message: message,
-	    					        											sender:{username:$scope.username}
+	    					        											sender:{username:$rootScope.username}
 	    					        										});
 	    					    };
 	    					    $rootScope.focusLastMessage = function () {
